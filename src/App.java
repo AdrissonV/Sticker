@@ -5,12 +5,13 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) throws Exception {
 
-        // Realizar a conexão HTTP buscando o TOP 250 filmes
-        String url = "https://mocki.io/v1/9a7c1ca9-29b4-4eb3-8306-1adb9d159060";
+        // Realizar a conexão HTTP
+        String url = solicitarURL();
         URI endereco = URI.create(url);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(endereco).GET().build();
@@ -26,8 +27,41 @@ public class App {
             System.out.println(filme.get("title"));
             System.out.println(filme.get("image"));
             System.out.println(filme.get("imDbRating"));
-            System.out.println();
+            /*
+             * Float nota = Float.parseFloat(filme.get("imDbRating"));
+             * int estrela = Math.round(nota);
+             * for (int i = 0; i < estrela; i++) {
+             * System.out.print(i);
+             * }
+             * System.out.println("teste");
+             */
         }
 
     }
+
+    private static String solicitarURL() {
+        int escolha = 0;
+        String url = "";
+        while ((escolha < 1) || (escolha > 3)) {
+            System.out.print(
+                    "Qual lista você deseja?\n1 - Filmes mais populares\n2 - Programas de TV mais populares\nR.:");
+            escolha = new Scanner(System.in).nextInt();
+            System.out.println(escolha);
+            switch (escolha) {
+                case 1:
+                    System.out.println("\nLista dos filmes mais populares");
+                    url = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
+                    break;
+                case 2:
+                    System.out.println("\nLista dos programas de TV mais populares");
+                    url = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
+                    break;
+                default:
+                    System.out.println("Escolher 1 ou 2");
+                    break;
+            }
+        }
+        return url;
+    };
+
 }
