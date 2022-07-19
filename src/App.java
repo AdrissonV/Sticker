@@ -10,7 +10,7 @@ public class App {
     public static void main(String[] args) throws Exception {
 
         // Realizar a conexão HTTP buscando o TOP 250 filmes
-        String url = "https://api.mocki.io/v2/549a5d8b";
+        String url = "https://mocki.io/v1/9a7c1ca9-29b4-4eb3-8306-1adb9d159060";
         URI endereco = URI.create(url);
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder(endereco).GET().build();
