@@ -24,17 +24,16 @@ public class App {
 
         // Exibir e manipular os dados
         for (Map<String, String> filme : listaFilmes) {
-            System.out.println(filme.get("title"));
-            System.out.println(filme.get("image"));
-            System.out.println(filme.get("imDbRating"));
-            /*
-             * Float nota = Float.parseFloat(filme.get("imDbRating"));
-             * int estrela = Math.round(nota);
-             * for (int i = 0; i < estrela; i++) {
-             * System.out.print(i);
-             * }
-             * System.out.println("teste");
-             */
+            System.out.println("\u001b[1m\u001b[32m" + filme.get("title") + "\u001b[m");
+            System.out.println("\u001b[4m" + filme.get("image") + "\u001b[m");
+            System.out.print("\u001b[1m" + filme.get("imDbRating") + "\u001b[m - ");
+            int nota = Math.round(Float.parseFloat(filme.get("imDbRating")));
+            var estrela = "";
+            for (int i = 0; i < nota; i++) {
+                estrela = estrela + "\u2B50";
+            }
+            System.out.println(estrela);
+            System.out.println();
         }
 
     }
@@ -57,7 +56,7 @@ public class App {
                     url = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
                     break;
                 default:
-                    System.out.println("Escolher 1 ou 2");
+                    System.out.println("\nEscolher 1 ou 2\n");
                     break;
             }
         }
