@@ -1,37 +1,20 @@
-import java.awt.image.BufferedImage;
-import java.awt.Graphics2D;
-import java.io.File;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
 public class StickerGenerator {
-    public static void main(String[] args) throws Exception {
-        generator();
-    }
+    static void generator(InputStream inputStream, String nomeArquivo) throws Exception {
+        // criar path e arquivos de entrada
 
-    static void generator() throws Exception {
-        // criar path e arquivos de entrada/saida
-        /*
-         * File entrada = new File("../Sticker/entrada/fdg.jpg");
-         * if (!entrada.exists()) {
-         * entrada.mkdirs();
-         * }
-         * entrada = new File(entrada + "/fdg.jpg");
-         * if (!entrada.exists()) {
-         * entrada.mkdirs();
-         * }
-         * 
-         * File saida = new File("../Sticker/saida/figurinha.png");
-         * if (!saida.exists()) {
-         * saida.mkdirs();
-         * }
-         * saida = new File(saida + "/figurinha.png");
-         * if (!saida.exists()) {
-         * saida.mkdirs();S
-         * }
-         */
-        BufferedImage imagem = ImageIO.read(new File("../Sticker/entrada/entrada.jpg"));
+        // InputStream inputStream = new FileInputStream(new
+        // File("../Sticker/entrada/entrada.jpg"));
+        // InputStream inputStream = new
+        // URL("https://imersao-java-apis.s3.amazonaws.com/MostPopularMovies_1.jpg").openStream();
+        BufferedImage imagem = ImageIO.read(inputStream);
 
         // ajustar tamanho da imagem
         int largura = imagem.getWidth();
@@ -44,13 +27,13 @@ public class StickerGenerator {
         graphics.drawImage(imagem, 0, 0, null);
 
         // setar fonte da escrita na nova imagem
-        Font fonte = new Font(Font.SANS_SERIF, Font.BOLD, 64);
+        Font fonte = new Font(Font.SANS_SERIF, Font.BOLD, 200);
         graphics.setFont(fonte);
 
         // escrever na nova imagem
-        graphics.drawString("FILMEZAZO", 50, alturaNova - 100);
+        graphics.drawString("FILMAÇO", largura / 2 - 450, alturaNova - 45);
         // salvar nova imagem
-        ImageIO.write(imagemNova, "png", new File("../Sticker/saida/figurinha.png"));
+        ImageIO.write(imagemNova, "png", new File("../Sticker/saida/" + nomeArquivo));
 
     };
 
