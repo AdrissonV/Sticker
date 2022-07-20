@@ -8,6 +8,12 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class App {
+
+    final static String RESET = "\u001b[m";
+    final static String NEGRITO = "\u001b[1m";
+    final static String FUNDO_VERDE = "\u001b[32m";
+    final static String SUBLINHADO = "\u001b[4m";
+
     public static void main(String[] args) throws Exception {
 
         // Realizar a conexão HTTP
@@ -24,9 +30,9 @@ public class App {
 
         // Exibir e manipular os dados
         for (Map<String, String> filme : listaFilmes) {
-            System.out.println("\u001b[1m\u001b[32m" + filme.get("title") + "\u001b[m");
-            System.out.println("\u001b[4m" + filme.get("image") + "\u001b[m");
-            System.out.print("\u001b[1m" + filme.get("imDbRating") + "\u001b[m - ");
+            System.out.println(NEGRITO + FUNDO_VERDE + filme.get("title") + RESET);
+            System.out.println(SUBLINHADO + filme.get("image") + RESET);
+            System.out.print(NEGRITO + filme.get("imDbRating") + RESET + " - ");
             int nota = Math.round(Float.parseFloat(filme.get("imDbRating")));
             var estrela = "";
             for (int i = 0; i < nota; i++) {
