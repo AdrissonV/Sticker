@@ -13,8 +13,9 @@ public class App {
 
     final static String RESET = "\u001b[m";
     final static String NEGRITO = "\u001b[1m";
-    final static String FUNDO_VERDE = "\u001b[32m";
+    final static String VERDE = "\u001b[32m";
     final static String SUBLINHADO = "\u001b[4m";
+    final static String AMARELO = "\u001b[33m";
 
     public static void main(String[] args) throws Exception {
 
@@ -35,18 +36,29 @@ public class App {
             String titulo = filme.get("title");
             String imagem = filme.get("image");
 
-            InputStream inputStream = new URL(imagem).openStream();
+            String extensao = imagem.substring(imagem.length() - 4);
+            String nomeArquivo = titulo.replace(":", "-") + extensao;
 
-            System.out.println(NEGRITO + FUNDO_VERDE + titulo + RESET);
+            System.out.println(NEGRITO + VERDE + titulo + RESET);
             System.out.println(SUBLINHADO + imagem + RESET);
-            System.out.print(NEGRITO + filme.get("imDbRating") + RESET + " - ");
+
             int nota = Math.round(Float.parseFloat(filme.get("imDbRating")));
             var estrela = "";
             for (int i = 0; i < nota; i++) {
                 estrela = estrela + "\u2B50";
             }
-            System.out.println(estrela);
+            System.out.print(estrela);
+            System.out.println(AMARELO + " - (" + filme.get("imDbRating") + ")" + RESET);
             System.out.println();
+
+            try {
+                InputStream inputStream = new URL(imagem).openStream();
+                var geranerator = new StickerGenerator();
+                System.out.println("Gerando imagem - [" + titulo + "]\n");
+                geranerator.generator(inputStream, nomeArquivo, nota);
+            } catch (java.io.FileNotFoundException err) {
+                System.out.println("Imagem não encontrada ou link inválido\n");
+            }
         }
 
     }
@@ -56,20 +68,19 @@ public class App {
         String url = "";
         while ((escolha < 1) || (escolha > 3)) {
             System.out.print(
-                    "Qual lista você deseja?\n1 - Filmes mais populares\n2 - Programas de TV mais populares\nR.:");
+                    "Qual lista você deseja?\n1 - Filmes mais populares\n2 - Séries mais populares\nR.:");
             escolha = new Scanner(System.in).nextInt();
-            System.out.println(escolha);
             switch (escolha) {
                 case 1:
-                    System.out.println("\nLista dos filmes mais populares");
+                    System.out.println(NEGRITO + "\nListando filmes mais populares\n" + RESET);
                     url = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
                     break;
                 case 2:
-                    System.out.println("\nLista dos programas de TV mais populares");
+                    System.out.println(NEGRITO + "\nListando séries mais populares\n" + RESET);
                     url = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
                     break;
                 default:
-                    System.out.println("\nEscolher 1 ou 2\n");
+                    System.out.println(NEGRITO + "\nEscolher 1 ou 2\n" + RESET);
                     break;
             }
         }

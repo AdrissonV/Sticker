@@ -1,4 +1,6 @@
+import java.awt.Color;
 import java.awt.Font;
+import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -7,16 +9,32 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class StickerGenerator {
-    static void generator(InputStream inputStream, String nomeArquivo) throws Exception {
-        // criar path e arquivos de entrada
+    void generator(InputStream inputStream, String nomeArquivo, int nota) throws Exception {
 
-        // InputStream inputStream = new FileInputStream(new
-        // File("../Sticker/entrada/entrada.jpg"));
-        // InputStream inputStream = new
-        // URL("https://imersao-java-apis.s3.amazonaws.com/MostPopularMovies_1.jpg").openStream();
+        // criar path e arquivos de entrada
+        File entrada = new File("../Sticker/entrada");
+        if (!entrada.exists()) {
+            entrada.mkdirs();
+        }
+
+        entrada = new File(entrada + "/" + nomeArquivo);
+        if (!entrada.exists()) {
+            entrada.createNewFile();
+        }
+
+        File saida = new File("../Sticker/saida");
+        if (!saida.exists()) {
+            saida.mkdirs();
+        }
+        saida = new File(saida + "/" + nomeArquivo + ".png");
+        if (!saida.exists()) {
+            saida.createNewFile();
+        }
+
+        // leitura da imagem
         BufferedImage imagem = ImageIO.read(inputStream);
 
-        // ajustar tamanho da imagem
+        // cria nova imagem local com transparencia e tamanho
         int largura = imagem.getWidth();
         int altura = imagem.getHeight();
         int alturaNova = altura + 200;
@@ -27,14 +45,21 @@ public class StickerGenerator {
         graphics.drawImage(imagem, 0, 0, null);
 
         // setar fonte da escrita na nova imagem
+        Color outlineColor = Color.black;
+        Color fillColor = Color.white;
+        BasicStroke outlineStroke = new BasicStroke(2.0f);
+
         Font fonte = new Font(Font.SANS_SERIF, Font.BOLD, 200);
         graphics.setFont(fonte);
 
         // escrever na nova imagem
-        graphics.drawString("FILMAÇO", largura / 2 - 450, alturaNova - 45);
-        // salvar nova imagem
-        ImageIO.write(imagemNova, "png", new File("../Sticker/saida/" + nomeArquivo));
+        if (nota <= 8) {
+            graphics.drawString("RUIM", largura / 2 - 250, alturaNova - 45);
+        } else
+            graphics.drawString("FILMAÇO", largura / 2 - 450, alturaNova - 45);
 
+        // salvar nova imagem em um arquivo
+        ImageIO.write(imagemNova, "png", saida);
     };
 
 }
