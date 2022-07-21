@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+//LxRbvwQqReFLXvlZf26pgC5xHQPvdOQbobVhgB4P
 public class App {
 
     final static String RESET = "\u001b[m";
