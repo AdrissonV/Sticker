@@ -1,6 +1,4 @@
-import java.awt.Color;
 import java.awt.Font;
-import java.awt.BasicStroke;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -45,10 +43,6 @@ public class StickerGenerator {
         graphics.drawImage(imagem, 0, 0, null);
 
         // setar fonte da escrita na nova imagem
-        Color outlineColor = Color.black;
-        Color fillColor = Color.white;
-        BasicStroke outlineStroke = new BasicStroke(2.0f);
-
         Font fonte = new Font(Font.SANS_SERIF, Font.BOLD, 200);
         graphics.setFont(fonte);
 
