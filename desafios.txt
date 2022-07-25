@@ -36,3 +36,6 @@ Compartilhe com seus amigos a sua URL do Heroku, para que eles possam consumir a
 Colocar a aplicação no cloud da Oracle;
 Implementar algum mecanismo de votação na API, para que outros amigos votem nas linguagens preferidas para que se possa fazer um ranking;
 Desafio supremo: Evoluir o projeto das três primeiras aula para que ele gere um bundle de stickers, para que se possa fazer o download e já incluir vários stickers no WhatsApp; Usar os conhecimentos aprendidos em alguma imersão React da Alura e fazer uma aplicação front-end para gerar esse bundle, onde possa se passar a URL do conteúdo e já visualizar os stickers;
+
+Mongo=dwa9cFSUF8uKhIoJ
+NASA=LxRbvwQqReFLXvlZf26pgC5xHQPvdOQbobVhgB4P

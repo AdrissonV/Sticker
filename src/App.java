@@ -9,7 +9,7 @@ public class App {
     static String URL_FILME = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
     static String URL_SERIE = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
     static String URL_LINGUAGEM = "";
-    static String URL_ALEATORIA = "https://api.nasa.gov/planetary/apod?api_key=LxRbvwQqReFLXvlZf26pgC5xHQPvdOQbobVhgB4P";
+    static String URL_ALEATORIA = "https://api.nasa.gov/planetary/apod?start_date=2022-02-01&api_key=" + NASA_KEY;
     static ExtratorConteudo extrator;
 
     final static String RESET = "\u001b[m";
@@ -19,6 +19,7 @@ public class App {
     final static String AMARELO = "\u001b[33m";
 
     public static void main(String[] args) throws Exception {
+        System.out.println("NASA_KEY = " + NASA_KEY);
         // Realizar a conexão HTTP
         String url = solicitarURL();
 
@@ -33,14 +34,13 @@ public class App {
 
         for (int i = 0; i < 3; i++) {
             Conteudo conteudo = conteudos.get(i);
-
             InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
-            String nomeArquivo = conteudo.getTitulo() + ".png";
+
+            String nomeArquivo = conteudo.getTitulo() + ".jpg";
 
             geradora.generator(inputStream, nomeArquivo);
 
             System.out.println(conteudo.getTitulo());
-            System.out.println();
 
         }
 

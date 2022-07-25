@@ -10,7 +10,7 @@ public class StickerGenerator {
     void generator(InputStream inputStream, String nomeArquivo) throws Exception {
 
         // criar path e arquivos de entrada
-        File entrada = new File("/entrada");
+        File entrada = new File("../Sticker/entrada");
         if (!entrada.exists()) {
             entrada.mkdirs();
         }
@@ -20,7 +20,7 @@ public class StickerGenerator {
             entrada.createNewFile();
         }
 
-        File saida = new File("/saida");
+        File saida = new File("../Sticker/saida");
         if (!saida.exists()) {
             saida.mkdirs();
         }
