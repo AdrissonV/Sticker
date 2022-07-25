@@ -7,10 +7,10 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 
 public class StickerGenerator {
-    void generator(InputStream inputStream, String nomeArquivo, int nota) throws Exception {
+    void generator(InputStream inputStream, String nomeArquivo) throws Exception {
 
         // criar path e arquivos de entrada
-        File entrada = new File("../Sticker/entrada");
+        File entrada = new File("/entrada");
         if (!entrada.exists()) {
             entrada.mkdirs();
         }
@@ -20,11 +20,11 @@ public class StickerGenerator {
             entrada.createNewFile();
         }
 
-        File saida = new File("../Sticker/saida");
+        File saida = new File("/saida");
         if (!saida.exists()) {
             saida.mkdirs();
         }
-        saida = new File(saida + "/" + nomeArquivo + ".png");
+        saida = new File(saida + "/" + nomeArquivo);
         if (!saida.exists()) {
             saida.createNewFile();
         }
@@ -47,10 +47,10 @@ public class StickerGenerator {
         graphics.setFont(fonte);
 
         // escrever na nova imagem
-        if (nota <= 8) {
-            graphics.drawString("RUIM", largura / 2 - 250, alturaNova - 45);
-        } else
-            graphics.drawString("FILMAÇO", largura / 2 - 450, alturaNova - 45);
+        // if (nota <= 8) {
+        // graphics.drawString("RUIM", largura / 2 - 250, alturaNova - 45);
+        // } else
+        graphics.drawString("FILMAÇO", largura / 2 - 450, alturaNova - 45);
 
         // salvar nova imagem em um arquivo
         ImageIO.write(imagemNova, "png", saida);
