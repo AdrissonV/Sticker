@@ -8,7 +8,7 @@ public class App {
 
     static String URL_FILME = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
     static String URL_SERIE = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
-    static String URL_LINGUAGEM = "";
+    static String URL_LINGUAGEM = "https://adrisson-linguagens-api.herokuapp.com/linguagens";
     static String URL_ALEATORIA = "https://api.nasa.gov/planetary/apod?start_date=2022-02-01&api_key=" + NASA_KEY;
     static ExtratorConteudo extrator;
 
@@ -67,7 +67,7 @@ public class App {
                 case 3:
                     System.out.println(NEGRITO + "\nListando linguagens mais populares\n" + RESET);
                     url = URL_LINGUAGEM;
-                    extrator = new ExtratorConteudoImdb();
+                    extrator = new ExtratorConteudoMongo();
                     break;
                 case 4:
                     System.out.println(NEGRITO + "\nListando URL aleatória\n" + RESET);
